@@ -1,0 +1,34 @@
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import dataProducts from "./data/products.jsx";
+import ProductCard from "./components/productCard.jsx";
+import Wallet from "./components/wallet.jsx";
+
+
+function App() {
+
+  
+const [product, setProduct] = useState([]);
+
+const afficheProduit = () => {
+  console.log(product);
+}
+  return (
+    <div className="container">
+      <div className="container_products_wallet">
+        <div className="container_product">
+          {dataProducts.map((product, index) => (
+              <ProductCard product={product} setProduct={setProduct}/>
+          ))}
+        </div>
+
+         
+        <Wallet product={product} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
