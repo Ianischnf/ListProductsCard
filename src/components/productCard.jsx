@@ -1,6 +1,6 @@
 import "../style/components/productCard.css";
 
-function ProductCard({ product, setProduct }) {
+function ProductCard({ product, setProduct, onAddToCard}) {
   return (
     <div className="product_card">
       <div className="card_top">
@@ -9,20 +9,7 @@ function ProductCard({ product, setProduct }) {
           src={product.image.desktop}
           alt="image"
         />
-        <button
-          onClick={() => {
-            setProduct((prev) => {
-              const existing = prev.find((p) => p.name === product.name);
-              if(existing) {
-                return prev.map((p) => 
-                  p.name === product.name ? {...p, quantity: p.quantity +1} :p
-                );
-              } else {
-                return [...prev, {...product, quantity:1}];
-              }
-            });
-          }}
-        >
+        <button onClick={() => onAddToCard(product)}>
           <img src="/public/assets/images/icon-add-to-cart.svg" />
           <p>Ajouter au panier</p>
         </button>
