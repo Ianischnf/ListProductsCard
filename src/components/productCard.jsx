@@ -1,6 +1,6 @@
 import "../style/components/productCard.css";
 
-function ProductCard({ product, setProduct, onAddToCard}) {
+function ProductCard({ product, onAddToCard}) {
   return (
     <div className="product_card">
       <div className="card_top">

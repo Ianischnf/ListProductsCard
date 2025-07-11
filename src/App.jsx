@@ -9,37 +9,39 @@ import Wallet from "./components/wallet.jsx";
 
 function App() {
 
-  
-const [product, setProduct] = useState([]);
 
-const afficheProduit = () => {
-  console.log(product);
-}
+  const [product, setProduct] = useState([]);
 
-const handleAddToCard = (product) => {
-  setProduct((prev) => {
-    const existing = prev.find(p => p.name === product.name);
-    if (existing) {
+  const afficheProduit = () => {
+    console.log(product);
+  }
+
+  const handleAddToCard = (product) => {
+    setProduct(prev => {
+      const found = prev.find(p => p.name === product.name);
+
+      if (!found) {
+        return [...prev, { ...product, quantity: 1 }];
+      }
+
       return prev.map(p =>
         p.name === product.name
           ? { ...p, quantity: p.quantity + 1 }
           : p
       );
-    } else {
-      return [...prev, { ...product, quantity: 1 }];
-    }
-  });
-}
+    });
+
+  }
   return (
     <div className="container">
       <div className="container_products_wallet">
         <div className="container_product">
           {dataProducts.map((product, index) => (
-              <ProductCard product={product} setProduct={setProduct} onAddToCard={handleAddToCard}/>
+            <ProductCard product={product} setProduct={setProduct} onAddToCard={handleAddToCard} />
           ))}
         </div>
 
-         
+
         <Wallet product={product} />
       </div>
     </div>
