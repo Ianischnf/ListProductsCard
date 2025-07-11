@@ -1,0 +1,14 @@
+services:
+  frontend:
+    container_name: ListProductCard
+    build: .
+    ports:
+      - "3002:80"
+    volumes:
+      - .:/app
+    networks:
+      - stack-net
+
+networks:
+  stack-net:
+    driver: bridge
