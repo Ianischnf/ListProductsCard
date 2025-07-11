@@ -1,4 +1,4 @@
-# Étape 1 : construction avec Node
+# Étape 1 : construction Image avec Node
 FROM node:18-alpine AS builder
 
 WORKDIR /app
@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Étape 2 : serveur Nginx
+# Étape 2 : constrution image avec Nginx (image final)
 FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
